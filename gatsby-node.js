@@ -1,11 +1,13 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
-exports.createPages = async ({ graphql, actions, reporter }) => {
-  const { createPage } = actions
-
+exports.createPages = async ({
+  actions: { createPage },
+  graphql,
+  reporter,
+}) => {
   // Define a template for blog post
-  const blogPost = path.resolve(`./src/templates/blog-post.js`)
+  const BlogPost = path.resolve(`./src/templates/blog-post.js`)
 
   // Get all markdown blog posts sorted by date
   const result = await graphql(
@@ -42,27 +44,25 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   if (posts.length > 0) {
     posts.forEach((post, index) => {
-      const previousPostId = index === 0 ? null : posts[index - 1].id
       const nextPostId = index === posts.length - 1 ? null : posts[index + 1].id
+      const previousPostId = index === 0 ? null : posts[index - 1].id
 
       createPage({
         path: post.fields.slug,
-        component: blogPost,
+        component: BlogPost,
         context: {
           id: post.id,
-          previousPostId,
           nextPostId,
+          previousPostId,
         },
       })
     })
   }
 }
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
-
+exports.onCreateNode = ({ actions: { createNodeField }, getNode, node }) => {
   if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode })
+    const value = createFilePath({ getNode, node })
 
     createNodeField({
       name: `slug`,
@@ -72,9 +72,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   }
 }
 
-exports.createSchemaCustomization = ({ actions }) => {
-  const { createTypes } = actions
-
+exports.createSchemaCustomization = ({ actions: { createTypes } }) => {
   // Explicitly define the siteMetadata {} object
   // This way those will always be defined even if removed from gatsby-config.js
 
@@ -85,7 +83,6 @@ exports.createSchemaCustomization = ({ actions }) => {
     type SiteSiteMetadata {
       author: Author
       siteUrl: String
-      social: Social
     }
 
     type Author {
@@ -93,19 +90,15 @@ exports.createSchemaCustomization = ({ actions }) => {
       summary: String
     }
 
-    type Social {
-      twitter: String
-    }
-
     type MarkdownRemark implements Node {
-      frontmatter: Frontmatter
       fields: Fields
+      frontmatter: Frontmatter
     }
 
     type Frontmatter {
-      title: String
-      description: String
       date: Date @dateformat
+      description: String
+      title: String
     }
 
     type Fields {

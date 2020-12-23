@@ -1,7 +1,7 @@
-import React from "react"
 import { Link } from "gatsby"
+import React from "react"
 
-const Layout = ({ location, title, children }) => {
+const Layout = ({ children, location, title }) => {
   const rootPath = `${__PATH_PREFIX__}/`
   const isRootPath = location.pathname === rootPath
   let header

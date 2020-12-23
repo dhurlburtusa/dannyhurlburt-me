@@ -1,15 +1,35 @@
 {
-  "name": "gatsby-starter-blog",
-  "private": true,
-  "description": "A starter for a blog powered by Gatsby and Markdown",
+  "name": "@dhurlburtusa/dannyhurlburt.me",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "private": true,
+  "description": "My personal site built using Gatsby Cloud",
+  "author": "Danny Hurlburt",
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/dhurlburtusa/dannyhurlburt.me/issues"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dhurlburtusa/dannyhurlburt.me.git"
+  },
+  "homepage": "https://github.com/dhurlburtusa/dannyhurlburt.me#readme",
+  "keywords": [
+    "danny",
+    "Danny Hurlburt",
+    "gatsby",
+    "hurlburt"
+  ],
+  "main": "n/a",
   "dependencies": {
     "gatsby": "^2.26.1",
     "gatsby-image": "^2.5.0",
+    "prismjs": "^1.22.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-helmet": "^5.2.1",
+    "typeface-merriweather": "0.0.72",
+    "typeface-montserrat": "0.0.75"
+  },
+  "devDependencies": {
     "gatsby-plugin-feed": "^2.7.0",
     "gatsby-plugin-google-analytics": "^2.5.0",
     "gatsby-plugin-manifest": "^2.6.1",
@@ -24,33 +44,15 @@
     "gatsby-source-filesystem": "^2.5.0",
     "gatsby-transformer-remark": "^2.10.0",
     "gatsby-transformer-sharp": "^2.6.0",
-    "prismjs": "^1.22.0",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-helmet": "^5.2.1",
-    "typeface-merriweather": "0.0.72",
-    "typeface-montserrat": "0.0.75"
-  },
-  "devDependencies": {
     "prettier": "2.2.1"
-  },
-  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
-  "keywords": [
-    "gatsby"
-  ],
-  "license": "0BSD",
-  "main": "n/a",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
   },
   "scripts": {
     "build": "gatsby build",
+    "clean": "gatsby clean",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "start": "npm run develop",
     "serve": "gatsby serve",
-    "clean": "gatsby clean",
+    "start": "npm run develop",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   }
 }
